@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<script src="assets/js/app.js" async defer></script>
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="assets/css/custom.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="container">
+			<hr>
+			
+			<div class="col-xs-12">
+				<div class="alert alert-success" role="alert">
+					Press <kbd>S</kbd> to start <br>
+					<hr>
+					Press <kbd>F</kbd> to log freezing
+				</div>
+			</div>
+			<div class="col-xs-12 text-center">
+				<div id="sessionInfo"class="alert alert-info" role="alert"><i class="fa fa-info"></i> | Session information</div>
+			</div>
+			<div class="col-sm-12 text-center">
+				<button id="startButton" onclick="startTimer()" class="btn btn-lg btn-success">
+				<i class="fa fa-play"></i>
+				<span id='sessionON' class="badge"></span>
+				</button>
+				<button type="" onclick="stopTimer()" class="btn btn-lg btn-danger"><i class="fa fa-stop"></i> </button>
+				<button onclick="resetSession()" class="btn btn-lg btn-warning"><i class="fa fa-repeat"></i> </button>
+				<br><br>
+				<button class="btn btn-primary btn-lg" type="button" onclick="logEvent()">
+				<i class="fa fa-paw" aria-hidden="true"></i> <span id='feedbackEvent' class="badge"></span>
+				</button>
+				<br><br>
+				<hr>
+				<div class="text-center text-danger">
+					Experimental ! - use at your own risk...
+				</div>
+				<br><br>
+				<input type="text" name="inputDuration" id="inputDuration" onfocus="if (this.value=='Duration in Minutes') this.value = ''" value='Duration in Minutes'>
+				<input type="text" name="inputBin" id="inputBin" onfocus="if (this.value=='Bin size in Milliseconds') this.value = ''" value='Bin size in Milliseconds'>
+				<br><br>
+				<button class="btn btn-default btn-sm" type="button" onclick="analyze()">
+					<i class="fa fa-line-chart" aria-hidden="true"></i> Analyze</span>
+				</button>
+			</div>
+			<div class="col-xs-12">
+			</div>
+			<div class="col-xs-12">
+				<br><br><hr>
+			</div>
+			<div class="col-xs-12">
+				<div id="results"></div>
+			</div>
+		</div>
+	</body>
+</html>
