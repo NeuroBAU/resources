@@ -18,7 +18,7 @@ int count_stimuli;
 
 //--- AUDIO | variables ----
 int timer, duration;
-int audio_duration = 2;
+int audio_duration = 3;
 
 int frame_rate = 50;  // frame rate defines the speed at wich the stimulus is delivered
 // --> to-do: calculate the framerate / counter to define stimulus speed conversion rate
