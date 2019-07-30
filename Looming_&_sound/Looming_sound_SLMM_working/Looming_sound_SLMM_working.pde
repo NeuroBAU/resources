@@ -1,6 +1,8 @@
 // ready for arduino integration
 import processing.serial.*;
 
+Serial myPort;
+
 // Initialize AUDIO
 import processing.sound.*;
 SinOsc sine;
@@ -31,6 +33,8 @@ void setup() {
   sine = new SinOsc(this);
   sine.amp(0.5);
   sine.freq(300);
+  String portName = Serial.list()[1]; // !!! change to match port (MAC / Windows)
+  myPort = new Serial(this, portName, 9600);
 }
 
 void draw() {
@@ -88,4 +92,8 @@ void loomingOset() {
 
     counter ++;
   }
+  // INSERT HERE CONDITION FOR DELIVERING THE TTL SIGNAL
+  //delay(1000);
+  //myPort.write('0'); // to turn OFF
+  //myPort.write('1'); // tu turn ON
 }
