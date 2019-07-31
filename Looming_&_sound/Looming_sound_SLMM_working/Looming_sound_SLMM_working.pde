@@ -1,6 +1,5 @@
-// ready for arduino integration
+// Arduino integration
 import processing.serial.*;
-
 Serial myPort;
 
 // Initialize AUDIO
@@ -13,10 +12,13 @@ float diameter = 40;
 float speedDiameter = 25;
 boolean flag = false;
 
+//--- PROTOCOL | variables ----
 int n_stimuli = 5;          // total number of stimuli
 float counter = 0;          // Defines speed of stimulus enlargement (together with frame_rate)
 int stimuli_per_trial = 5;  // Number of stimuli per trial
 int count_stimuli; 
+int start_time;
+boolean opto_onset = false;
 
 //--- AUDIO | variables ----
 int timer, duration;
@@ -33,16 +35,22 @@ void setup() {
   sine = new SinOsc(this);
   sine.amp(0.5);
   sine.freq(300);
-  String portName = Serial.list()[1]; // !!! change to match port (MAC / Windows)
+  String portName = Serial.list()[0]; // !!! MAC
+  //String portName = Serial.list()[0]; // !!! Windows
   myPort = new Serial(this, portName, 9600);
 }
 
 void draw() {
+  myPort.write('0');
   background(89, 89, 89);  // neutral background
+
   if (flag) {
-    loomingOset();
+    loomingOnset();
+    //myPort.write('0'); // to turn OFF
+    //myPort.write('1'); // tu turn ON
   }
 }
+
 
 // Enable key press to repeat the stimului
 // 'a' for VISUAL
@@ -50,29 +58,42 @@ void draw() {
 // ---> !!! CAREFUL: missing condition to stop if pressed for long time
 // ---> !!! CAREFUL: missing condition to enforce serial execution of the stimuli
 void keyPressed() {
+  start_time = millis();
   if (key == 'a') {
     count_stimuli = 0;
     flag = true;
+    opto_onset = true;
   } else if (key == 'l') {
     soundON();
   }
 }
 
+
 // play SOUND
 void soundON() {
   duration = 0;
   timer = second();
+
   while (duration < audio_duration) {
     sine.play();
     duration = second() - timer;
   }
+
   sine.stop();
 }
 
+// LOOMING
+void loomingOnset() {
+  int stop_time = millis();
 
-void loomingOset() {
 
   if (count_stimuli < stimuli_per_trial) {
+
+    if ((stop_time - start_time >= 1000) && (opto_onset)) {
+      println(stop_time - start_time);
+      start_time = millis();
+      opto_onset = false;
+    }
 
     diameter = diameter + speedDiameter;    // increase stimulus size
 
@@ -92,8 +113,4 @@ void loomingOset() {
 
     counter ++;
   }
-  // INSERT HERE CONDITION FOR DELIVERING THE TTL SIGNAL
-  //delay(1000);
-  //myPort.write('0'); // to turn OFF
-  //myPort.write('1'); // tu turn ON
 }
