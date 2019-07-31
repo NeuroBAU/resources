@@ -54,6 +54,8 @@ void draw() {
 // Enable key press to repeat the stimului
 // 'a' for VISUAL
 // 'l' for AUDIO
+// 'g' for VISUAL + TTL_out
+// 'x' for TTL_out
 // ---> !!! CAREFUL: missing condition to stop if pressed for long time
 // ---> !!! CAREFUL: missing condition to enforce serial execution of the stimuli
 void keyPressed() {
@@ -67,6 +69,8 @@ void keyPressed() {
     count_stimuli = 0;
     flag = true;
     opto_onset = true;
+  } else if (key == 'x') {
+    myPort.write('1');
   }
 }
 
