@@ -19,6 +19,7 @@ int stimuli_per_trial = 5;  // Number of stimuli per trial
 int count_stimuli; 
 int start_time;
 boolean opto_onset = false;
+int delay_opto_onset  = 1000;
 
 //--- AUDIO | variables ----
 int timer, duration;
@@ -35,7 +36,7 @@ void setup() {
   sine = new SinOsc(this);
   sine.amp(0.5);
   sine.freq(300);
-  String portName = Serial.list()[0]; // !!! MAC
+  String portName = Serial.list()[1]; // !!! MAC
   //String portName = Serial.list()[0]; // !!! Windows
   myPort = new Serial(this, portName, 9600);
 }
@@ -46,8 +47,6 @@ void draw() {
 
   if (flag) {
     loomingOnset();
-    //myPort.write('0'); // to turn OFF
-    //myPort.write('1'); // tu turn ON
   }
 }
 
@@ -62,9 +61,12 @@ void keyPressed() {
   if (key == 'a') {
     count_stimuli = 0;
     flag = true;
-    opto_onset = true;
   } else if (key == 'l') {
     soundON();
+  } else if (key == 'g') {
+    count_stimuli = 0;
+    flag = true;
+    opto_onset = true;
   }
 }
 
@@ -85,14 +87,14 @@ void soundON() {
 // LOOMING
 void loomingOnset() {
   int stop_time = millis();
-
-
   if (count_stimuli < stimuli_per_trial) {
 
-    if ((stop_time - start_time >= 1000) && (opto_onset)) {
+    if ((stop_time - start_time >= delay_opto_onset) && (opto_onset)) {
+      myPort.write('1');
       println(stop_time - start_time);
       start_time = millis();
       opto_onset = false;
+      myPort.write('0');
     }
 
     diameter = diameter + speedDiameter;    // increase stimulus size
