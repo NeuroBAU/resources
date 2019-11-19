@@ -10,9 +10,11 @@ The steps to apply the controlled dictionary are the following:
 3. Use the selected fields to extract information from the _Materials & Methods_ section
 4. Refine ...
 
-The dictionary is best viewed as a tree diagram
+The present repository contains the dictionary stored in 3 different formats:
+- Mind map      (.xmind)
+- Open document (.ods
+- Graphical     (.png)
+
+The dictionary is best viewed as a tree diagram:
 
 ![screenshot.png](screenshot.png)
-
-
-
