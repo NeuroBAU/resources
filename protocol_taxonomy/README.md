@@ -6,6 +6,7 @@ The tree is used to capture variability in behavioral experiment procedures. Not
 ### How to use
 The steps to apply the controlled dictionary are the following:
 1. Perform a preliminary review of the literature to identify features that best capture the logic, structure and contingencies of the behavioral assay
+1b. (optional) Ideally more than one expert should agree on the features to be extracted
 2. Select the fields in the dictionary that are in line with the features extracted from the literature
 3. Use the selected fields to extract information from the _Materials & Methods_ section
 4. Refine ...
