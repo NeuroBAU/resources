@@ -1,0 +1,10 @@
+{"DATE":"2020-04-14",
+"ROOT_DIR": "/Users/lex/Desktop/", 
+"FILE_EXTENSION": ".mpg",
+"TARGET_DIR": "/Users/lex/Desktop/tmp/",
+"FRAME_RATE": "30",
+"CODEC": "mpeg4",
+"VTAG": "mp4v",
+"BIT_RATE": "716k",
+"CONTAINER":".mp4"
+}

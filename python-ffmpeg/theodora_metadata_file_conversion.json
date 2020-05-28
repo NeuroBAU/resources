@@ -1,0 +1,12 @@
+{"DATE":"2020-04-14",
+    "COMMENT":"convert video from Crete for activity analysis (i.e. freezing) with ethovision",
+    "ROOT_DIR": "/Volumes/NEUROBAU/PUBLIC/VN/Theodora/test_for_analysis/", 
+    "FILE_EXTENSION": ".wmv",
+    "TARGET_DIR": "/Volumes/NEUROBAU/PUBLIC/VN/Theodora/test_for_analysis/",
+    "FRAME_RATE": "8",
+    "CODEC": "mpeg4",
+    "VTAG": "mp4v",
+    "BIT_RATE": "716k",
+    "CONTAINER":".mp4"
+    }
+       
